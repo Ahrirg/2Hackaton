@@ -7,6 +7,9 @@ from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import ImageFolder
 import os
 
+# Classes
+classes = ["normal", "diabetes", "heart_disease", "alzheimerz"]
+
 # path shit
 cwd = os.getcwd()
 weights_save_path = rf"{cwd}\saved_models\model.pth"
@@ -16,10 +19,10 @@ image_root_path = rf"{cwd}\all_images"
 training_set_fraction = 0.8
 learning_rate = 0.01
 epochs = 5
-img_res = 256
+img_res = 16
 
 # Look how scalable, scalable very
-num_classes = 2
+num_classes = len(classes)
 
 # Define a Convolutional Neural Network
 class SimpleCNN(nn.Module):

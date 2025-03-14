@@ -30,6 +30,9 @@ input = transform(img).unsqueeze(0)
 with torch.no_grad():
     output = model.forward(input)
 
-_, res = torch.max(output, 1)
+probabilities = torch.softmax(output, dim=1)
 
-print(f"Predicted class:{res.item()}")
+print(f"{'=' * 60}CLASS PROBABILITY DISTRIBUTIONS\n{'=' * 60}\n")
+for i in range(train.num_classes):
+    print(f"{train.classes[i]}: {probabilities[0, i].item():.4f}")
+print(f"{'=' * 60}")
